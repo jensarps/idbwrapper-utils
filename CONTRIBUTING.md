@@ -6,6 +6,6 @@ If it's reasonable, also add a `demo.html` file showing your code in action.
 
 Add your code to the "Contents" section of the main readme file, so that people can directly see your code is in this repository.
 
-Then, hit the "Pull Request" button on GitHub the request a merge.
+Then, hit the "Pull Request" button on GitHub to request a merge.
 
 Done!
