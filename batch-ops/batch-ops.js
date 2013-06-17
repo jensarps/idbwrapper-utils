@@ -70,7 +70,7 @@
       var cur = arr[i];
       this.get(cur, function (d) {
         handleGetBatchCompleted(d, onSuccess);
-      });
+      }, onError);
     }
   };
 
