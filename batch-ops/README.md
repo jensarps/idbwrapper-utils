@@ -16,7 +16,7 @@ Takes an aray of objects and stores them.
 
 Example:
 
-```javavscript
+```javascript
 var dataArray = [
   { id: 18, foo: 'bar'},
   { id: 25, foo: 'baz'}
