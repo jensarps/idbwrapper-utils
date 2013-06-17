@@ -20,6 +20,10 @@ $.when(myStore1.remove(id), myStore2.put(someObj))
   .done(function(){ console.log('All ops done.'); });
 ```
 
+#Demo
+
+You can check out a demo here: [http://jensarps.github.io/idbwrapper-utils/idbpromises-jquery/demo.html](http://jensarps.github.io/idbwrapper-utils/idbpromises-jquery/demo.html). The source is here: [demo.html](demo.html).
+
 
 #Usage
 
