@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>promises-jquery: Wrapping IDBWrapper in jQuery Promises</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/idbwrapper/1.2.0/idbstore.min.js"></script>
+  <style>pre { color: white; background: black; padding: 5px 0;}</style>
+  <script src="idbpromises-jquery.js"></script>
+</head>
+<body>
+
+<p>Open the console and click the 'run' button. You will then see a bunch of buttons
+  that allow data manipulation. Click them, and check the console for
+  results.</p>
+
+<div id="openWrapper">
+<strong>open()</strong> <button onclick="openDB()">run</button>
+<pre>
+  var myStore = new IDBPromises({
+    storeName: 'jquery-test-store'
+  });
+
+  myStore
+      .open()
+      .then(function () { console.log('Store ready!'); });
+  }
+</pre>
+</div>
+
+<div id="dataWrapper" style="display: none;">
+<strong>put()</strong> <button onclick="testWrite()">run</button>
+<pre>
+  myStore.put(dataObj)
+    .then(function (result) { console.log('put() call success. Result:', result); });
+</pre>
+
+<strong>get()</strong> <button onclick="testRead()">run</button>
+<pre>
+  myStore.get(1)
+    .then(function (result) { console.log('get() call success. Result:', result); });
+</pre>
+
+<strong>getAll()</strong> <button onclick="testGetAll()">run</button>
+<pre>
+  myStore.getAll()
+    .then(function (result) { console.log('getAll() call success. Result:', result); });
+</pre>
+
+<strong>remove()</strong><button onclick="testRemove()">run</button>
+<pre>
+  myStore.remove(1)
+    .then(function (result) { console.log('remove() call success. Result:', result); });
+</pre>
+
+<strong>clear()</strong> <button onclick="testClear()">run</button>
+<pre>
+  myStore.clear()
+    .then(function (result) { console.log('clear() call success. Result:', result); });
+</pre>
+
+<strong>batch()</strong><button onclick="testBatch()">run</button>
+<pre>
+  myStore.batch(list)
+    .done(function (result) { console.log('batch() call success. Result:', result); })
+    .fail(function (error) { console.log("error", error); });
+</pre>
+
+<strong>iterate()</strong><button onclick="testIterate()">run</button>
+<pre>
+  myStore.iterate()
+    .progress(function (item) { console.log('iterate() progress:', item); } )
+    .done(function () { console.log('iterate() done.'); });
+</pre>
+</div>
+
+<script>
+  var myStore = new IDBPromises({
+    storeName: 'jquery-test-store'
+  });
+
+  function openDB () {
+    myStore
+      .open()
+      .then(function () {
+        console.log('Store ready!');
+
+        $('#openWrapper').hide();
+        $('#dataWrapper').show();
+      });
+  }
+
+
+  var lastnames = ['Smith', 'Miller', 'Doe', 'Frankenstein', 'Furter'],
+    firstnames = ['Peter', 'John', 'Frank', 'James'],
+    id = 1;
+
+  function testWrite () {
+    var dataObj = {
+      lastname: lastnames[Math.floor(Math.random() * 5)],
+      firstname: firstnames[Math.floor(Math.random() * 4)],
+      age: Math.floor(Math.random() * (100 - 20)) + 20,
+      id: id++
+    };
+
+    myStore.put(dataObj)
+      .then(function (result) { console.log('put() call success. Result:', result); });
+  }
+
+  function testRead () {
+    myStore.get(1)
+      .then(function (result) { console.log('get() call success. Result:', result); });
+  }
+
+  function testGetAll () {
+    myStore.getAll()
+      .then(function (result) { console.log('getAll() call success. Result:', result); });
+  }
+
+  function testRemove () {
+    myStore.remove(1)
+      .then(function (result) { console.log('remove() call success. Result:', result); });
+  }
+
+  function testClear () {
+    myStore.clear()
+      .then(function (result) { console.log('clear() call success. Result:', result); });
+  }
+
+  function testIterate () {
+    myStore.iterate()
+      .progress(function (item) { console.log('iterate() progress:', item); } )
+      .done(function () { console.log('iterate() done.'); });
+  }
+
+  function testBatch () {
+    var list = [];
+    for (var i = 0; i < 5; i++) {
+      var dataObj = {
+        lastname: lastnames[Math.floor(Math.random() * 5)],
+        firstname: firstnames[Math.floor(Math.random() * 4)],
+        age: Math.floor(Math.random() * (100 - 20)) + 20,
+        id: id++
+      };
+      list.push({ type: "put", value: dataObj });
+    }
+
+    myStore.batch(list)
+      .done(function (result) { console.log('batch() call success. Result:', result); })
+      .fail(function (error) { console.log("error", error); });
+  }
+
+</script>
+</body>
+</html>
