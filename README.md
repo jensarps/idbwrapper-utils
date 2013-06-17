@@ -6,7 +6,7 @@ idbwrapper-utils is a collection of community written utilities, wrappers, helpe
 
 If you made some code that made it easier for you to work with IDBWrapper, or that solved some problem for you, this code will probably be useful to others, too.
 
-You are invited to share your code here!
+You are invited to share your code here! Just fork this repo, add your code and send a pull request -- as easy as this.
 
 #Contents
 
