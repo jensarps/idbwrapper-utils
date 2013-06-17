@@ -22,7 +22,7 @@ $.when(myStore1.remove(id), myStore2.put(someObj))
 
 #Demo
 
-You can check out a demo here: [http://jensarps.github.io/idbwrapper-utils/idbpromises-jquery/demo.html](http://jensarps.github.io/idbwrapper-utils/idbpromises-jquery/demo.html). The source is here: [demo.html](demo.html).
+You can check out a demo here: [http://jensarps.github.io/idbwrapper-utils/idbpromises-jquery/demo.html](http://jensarps.github.io/idbwrapper-utils/idbpromises-jquery/demo.html). The source is here: [demo.html](https://github.com/jensarps/idbwrapper-utils/blob/master/idbpromises-jquery/demo.html).
 
 
 #Usage
